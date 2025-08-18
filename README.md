@@ -54,6 +54,8 @@ Cloud & Hosting: (To be updated based on deployment)
 
 🤝 Contributors
 
-Anuj Upadhyay – Team Lead, AI & Full Stack Developer
+Santanu Samanta – Core Member, AIML Engineer & Full Stack Developer
+
+
 
 
