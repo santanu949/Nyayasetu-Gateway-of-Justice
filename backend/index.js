@@ -21,6 +21,9 @@ app.post('/api/query', (req, res) => {
   res.json({ response: `You asked about: ${query}. This is a placeholder response.` });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Remove app.listen for Vercel deployment
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+module.exports = app;
