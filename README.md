@@ -40,112 +40,91 @@ Nyayasetu (meaning "Justice Bridge") serves as a digital assistant that:
 
 ## 🏗 System Architecture
 
-The system follows a modern MERN-like architecture with a focus on AI integration.
+The system is architected as a decoupled multi-service application, optimized for cloud-native deployment.
 
 ```mermaid
 graph TD
-    User((User)) -->|Interacts| Frontend[Next.js Frontend]
-    Frontend -->|API Calls| Backend[Node.js + Express API]
-    Backend -->|Data Storage| DB[(MongoDB)]
-    Backend -->|NLP Processing| AI[AI/NLP Models]
-    AI -->|STT/TTS| Voice[Voice Engine]
-    Voice -->|Audio Feedback| User
+    User((User)) -->|HTTPS| Vercel[Vercel Gateway]
+    Vercel -->|Route: /| Frontend[Next.js Frontend]
+    Vercel -->|Route: /_/backend| Backend[Node.js Express API]
+    Backend -->|Data| DB[(MongoDB)]
+    Frontend -->|API Calls| Vercel
 ```
 
-1.  **Frontend**: Built with Next.js and TailwindCSS for a responsive, accessible UI.
-2.  **Backend**: Express.js server handling routing, authentication, and API logic.
-3.  **Database**: MongoDB for storing user profiles and legal query history.
-4.  **AI Layer**: Transformer-based models for NLP tasks and specialized engines for STT/TTS.
+- **Frontend**: Next.js application served from the `frontend/` directory.
+- **Backend**: Node.js Express server located in `backend/`, adapted for Vercel Serverless Functions.
+- **Multi-Service Routing**: Managed by `vercel.json` using `experimentalServices`.
 
 ---
 
-## 🛠 Tech Stack
+## 🚀 Vercel Deployment (CLI)
 
-| Layer | Technology |
-| :--- | :--- |
-| **Frontend** | React, Next.js (App Router), TailwindCSS, Lucide React |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB (Mongoose ODM) |
-| **AI/ML** | Transformer Models, NLP, Speech-to-Text, Text-to-Speech |
-| **Dev Tools** | TypeScript, ESLint, PostCSS |
-
----
-
-## ⚙️ Setup and Installation
+This project is configured for seamless deployment to Vercel using the Vercel CLI.
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
-- MongoDB instance (Local or Atlas)
+1.  Install Vercel CLI: `npm install -g vercel`
+2.  Login to Vercel: `vercel login`
 
-### Step-by-Step Installation
+### Deployment Steps
 
-1.  **Clone the Repository**:
+1.  **Environment Variables**:
+    *   In the Vercel Dashboard, add `MONGODB_URI` to your project environment variables.
+    *   The frontend automatically connects to the backend via the `/_/backend` prefix.
+
+2.  **Deploy to Preview**:
     ```bash
-    git clone https://github.com/santanu949/Nyayasetu-Gateway-of-Justice.git
-    cd Nyayasetu-Gateway-of-Justice-main
+    vercel
     ```
 
-2.  **Setup Backend**:
+3.  **Deploy to Production**:
     ```bash
-    cd backend
-    npm install
-    # Create a .env file and add:
-    # PORT=5000
-    # MONGODB_URI=your_mongodb_connection_string
-    npm start
+    vercel --prod
     ```
 
-3.  **Setup Frontend**:
-    ```bash
-    cd ../frontend
-    npm install
-    npm run dev
-    ```
-
-4.  **Access the App**:
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Configuration Details (`vercel.json`)
+The project uses the `experimentalServices` feature to deploy both frontend and backend in a single project:
+- **Frontend Entrypoint**: `frontend` (Next.js)
+- **Backend Entrypoint**: `backend/index.js` (Express)
+- **Routing**: Backend is exposed under the `/_/backend` path prefix.
 
 ---
 
-## 📖 Usage Guide
+## ⚙️ Local Development
 
-1.  **Onboarding**: Users start at the welcome screen where they can sign up or sign in.
-2.  **Dashboard**: Once logged in, users can access various legal services through the "Digital Justice Portal."
-3.  **Legal Queries**: Type or speak a legal question (e.g., "What are my rights if I am arrested?") into the AI assistant.
-4.  **Voice Mode**: Click the microphone icon to activate voice commands and hear responses read aloud.
-5.  **BNS Search**: Browse or search for specific sections of the Bharatiya Nyaya Sanhita to get simplified summaries.
+To run the full stack locally with Vercel-like routing:
+
+1.  **Install Dependencies**:
+    ```bash
+    # Root directory
+    cd backend && npm install
+    cd ../frontend && npm install
+    ```
+
+2.  **Run with Vercel Dev**:
+    ```bash
+    vercel dev -L
+    ```
+    *Note: The `-L` flag ensures all services run together locally.*
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure (Cleaned)
 
 ```text
 NyayaSetu/
 ├── frontend/                # Next.js web application
 │   ├── src/
-│   │   ├── app/             # App Router (pages & layouts)
-│   │   ├── components/      # React components (Hero, Nav, Auth)
-│   │   │   └── ui/          # shadcn/ui inspired components
-│   │   ├── styles/          # Tailwind & Global CSS
-│   │   └── lib/             # Utility functions
-│   ├── public/              # Static assets (images, icons)
+│   │   ├── app/             # App Router
+│   │   ├── components/      # React components
+│   │   ├── lib/             # API utilities (api.ts)
+│   │   └── styles/          # Tailwind & Global CSS
 │   └── package.json
 ├── backend/                 # Node.js + Express API
-│   ├── src/                 # API logic & models
-│   ├── server.js            # Main entry point
+│   ├── index.js             # Vercel-adapted entry point
 │   └── package.json
+├── vercel.json              # Multi-service deployment config
 └── README.md                # Project documentation
 ```
-
----
-
-## 📈 Current Status & Roadmap
-
-- [x] Phase 1: Basic Legal Awareness Portal & AI Summarization.
-- [ ] Phase 2: Full Multilingual Voice Assistant Integration.
-- [ ] Phase 3: Direct Integration with Govt Legal Schemes & e-Courts.
-- [ ] Phase 4: Mobile Application Launch (Android/iOS).
 
 ---
 
@@ -156,4 +135,4 @@ NyayaSetu/
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
