@@ -1,4 +1,4 @@
-# ⚖️ Nyayasetu: Gateway of Justice
+#  Nyayasetu: Gateway of Justice
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
