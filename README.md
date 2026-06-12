@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/Frontend-React%20%2F%20Next.js-blue.svg)]()
 [![Node.js](https://img.shields.io/badge/Backend-Node.js%20%2F%20Express-green.svg)]()
 
-**Nyayasetu** is an AI powered digital platform designed to bridge the gap between citizens and the Indian legal system. Specifically tailored for rural and semi-urban populations, it simplifies complex legal procedures and the **Bharatiya Nyaya Sanhita (BNS)** through a multilingual, voice-enabled interface.
+**Nyayasetu** is an AI powered digital platform designed to bridge the gap between citizens and the Indian legal system. Specifically tailored for rural and semi-urban populations, it simplifies complex legal procedures and the **Bharatiya Nyaya Sanhita (BNS)** through an multilingual, voice-enabled interface.
 
 ---
 
