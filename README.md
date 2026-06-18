@@ -11,7 +11,7 @@
 
 ##  Overview
 
-### The Real-World Problem
+### The Real World Problem
 In India, legal literacy remains a significant challenge, especially in rural areas. Complex legal jargon, language barriers, and limited access to legal experts often leave citizens unaware of their fundamental rights and the remedies available to them.
 
 ### Our Solution
