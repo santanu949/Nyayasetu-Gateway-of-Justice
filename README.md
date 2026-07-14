@@ -23,7 +23,7 @@ Nyayasetu (meaning "Justice Bridge") serves as a digital assistant that:
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 ### 💻 Software Features
 - **Digital Justice Portal**: A secure, government-authenticated dashboard for legal services.
